@@ -83,6 +83,16 @@ const printPies = () => {
     printToDom('pies', domString);
 };
 
+const buttonClick = () => {
+  console.log('you clicked a button');
+  // what goes in the () = action and the function
+};
+
+const buttonEvents = () => {
+  document.getElementById('Zoe').addEventListener('click', buttonClick)
+
+}
+
 // FOR LOOP METHOD - BOTH METHODS WORK
 
 // const printPies = () => {
@@ -101,6 +111,7 @@ const printPies = () => {
 
 const init = () => {
     printPies();
+    buttonEvents();
 }
 
 init();
