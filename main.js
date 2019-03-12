@@ -104,3 +104,7 @@ const init = () => {
 }
 
 init();
+
+// dev tools
+// element tag is good for styling - can add to height, width, etc without having to hard refresh
+// console - mess iwth JS also good with errors; always start with the top error
