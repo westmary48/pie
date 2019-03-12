@@ -83,13 +83,18 @@ const printPies = () => {
     printToDom('pies', domString);
 };
 
-const buttonClick = () => {
-  console.log('you clicked a button');
+const buttonClick = (e) => {
+  console.log('you clicked a button', e.target.id);
   // what goes in the () = action and the function
+
+
 };
 
 const buttonEvents = () => {
   document.getElementById('Zoe').addEventListener('click', buttonClick)
+  document.getElementById('Saul').addEventListener('click', buttonClick)
+  document.getElementById('Michael').addEventListener('click', buttonClick)
+  document.getElementById('All').addEventListener('click', buttonClick)
 
 }
 
