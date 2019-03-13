@@ -40,7 +40,7 @@ const pies = [
       ingredients: 'Pecans, sugar, butter, flour',
       bakeTemp: 5000,
       drinkPairing: 'Milk',
-      imageURL: 'https://cookiesandcups.com/wp-content/uploads/2018/10/pecanpie-3.jpg',
+      imageUrl: 'https://cookiesandcups.com/wp-content/uploads/2018/10/pecanpie-3.jpg',
       instructor: 'Saul',
       iceCream: 'Vanilla',
     },
@@ -49,7 +49,7 @@ const pies = [
       ingredients: 'lemons, sugar, butter, flour',
       bakeTemp: 5000,
       drinkPairing: 'Water',
-      imageURL: 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/recipe/201851/0020/img38l.jpg',
+      imageUrl: 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/recipe/201851/0020/img38l.jpg',
       instructor: 'Saul',
       iceCream: 'none',
     },
@@ -59,23 +59,61 @@ const printToDom = (divId, textToPrint) => {
     const selectedDiv = document.getElementById(divId);
     selectedDiv.innerHTML = textToPrint
 }
-
+// pies is a global array which is why we needed to change it to something else ie - pies
 // for each loop
 // dont have to use [i]
 // dont have to write out the for each stuff
 // single iteration is pie instead of pies
 // array name comes before the forEach
-const printPies = () => {
+const printPies = (monkeybutts) => {
     let domString = '';
-    pies.forEach((pie) => {
-        domString += `<div class = 'container'>`
+    monkeybutts.forEach((pie) => {
+        domString += `<div class = 'card'>`
         domString += `<h3>${pie.name}</h3>`
+        domString += `<h3>${pie.ingredients}</h3>`
+        domString += `<h3>${pie.bakeTemp}</h3>`
+        domString += `<h3>${pie.drinkPairing}</h3>`
+        domString += `<img class= "img" src= "${pie.imageUrl}">`
+        domString += `<h3>${pie.instructor}</h3>`
+        domString += `<h3>${pie.iceCream}</h3>`
         domString += `</div>`
 
     })
 
     printToDom('pies', domString);
 };
+
+const buttonClick = (e) => {
+  const buttonId = e.target.id;
+  // console.log('you clicked a button', e.target.id);
+  // what goes in the () = action and the function
+  // have access to global variables array pies and every function on the page
+  // need to loop over the pies array
+  // if the value of the instructor key is the same as the buttonId - keep that object
+  // once we have all the pies for that instructor - print (call print pies)
+  const selectedPies = [];
+  // holding pies worthy of staying (selected pies)
+  pies.forEach((pie) => {
+    if(pie.instructor === buttonId) {
+      selectedPies.push(pie);
+  }
+  });
+// reason why we put this conditional outside for each loop is that the instructor never equals all
+if ( buttonId === 'All') {
+  printPies(pies);
+}else {
+  printPies(selectedPies);
+}
+};
+// click on button
+// event listener is attatched
+const buttonEvents = () => {
+  document.getElementById('Zoe').addEventListener('click', buttonClick)
+  document.getElementById('Saul').addEventListener('click', buttonClick)
+  document.getElementById('Michael').addEventListener('click', buttonClick)
+  document.getElementById('All').addEventListener('click', buttonClick)
+
+}
 
 // FOR LOOP METHOD - BOTH METHODS WORK
 
@@ -94,7 +132,12 @@ const printPies = () => {
 // }
 
 const init = () => {
-    printPies();
+    printPies(pies);
+    buttonEvents();
 }
 
 init();
+
+// dev tools
+// element tag is good for styling - can add to height, width, etc without having to hard refresh
+// console - mess iwth JS also good with errors; always start with the top error
