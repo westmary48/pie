@@ -59,7 +59,7 @@ const printToDom = (divId, textToPrint) => {
     const selectedDiv = document.getElementById(divId);
     selectedDiv.innerHTML = textToPrint
 }
-
+// pies is a global array which is why we needed to change it to something else ie - pies
 // for each loop
 // dont have to use [i]
 // dont have to write out the for each stuff
@@ -90,8 +90,9 @@ const buttonClick = (e) => {
   // have access to global variables array pies and every function on the page
   // need to loop over the pies array
   // if the value of the instructor key is the same as the buttonId - keep that object
-  // once we have all the pies for that instructor - print (call pie builder)
+  // once we have all the pies for that instructor - print (call print pies)
   const selectedPies = [];
+  // holding pies worthy of staying (selected pies)
   pies.forEach((pie) => {
     if(pie.instructor === buttonId) {
       selectedPies.push(pie);
@@ -104,7 +105,8 @@ if ( buttonId === 'All') {
   printPies(selectedPies);
 }
 };
-
+// click on button
+// event listener is attatched
 const buttonEvents = () => {
   document.getElementById('Zoe').addEventListener('click', buttonClick)
   document.getElementById('Saul').addEventListener('click', buttonClick)
