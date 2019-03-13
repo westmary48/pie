@@ -65,9 +65,9 @@ const printToDom = (divId, textToPrint) => {
 // dont have to write out the for each stuff
 // single iteration is pie instead of pies
 // array name comes before the forEach
-const printPies = () => {
+const printPies = (monkeybutts) => {
     let domString = '';
-    pies.forEach((pie) => {
+    monkeybutts.forEach((pie) => {
         domString += `<div class = 'card'>`
         domString += `<h3>${pie.name}</h3>`
         domString += `<h3>${pie.ingredients}</h3>`
@@ -84,10 +84,25 @@ const printPies = () => {
 };
 
 const buttonClick = (e) => {
-  console.log('you clicked a button', e.target.id);
+  const buttonId = e.target.id;
+  // console.log('you clicked a button', e.target.id);
   // what goes in the () = action and the function
-
-
+  // have access to global variables array pies and every function on the page
+  // need to loop over the pies array
+  // if the value of the instructor key is the same as the buttonId - keep that object
+  // once we have all the pies for that instructor - print (call pie builder)
+  const selectedPies = [];
+  pies.forEach((pie) => {
+    if(pie.instructor === buttonId) {
+      selectedPies.push(pie);
+  }
+  });
+// reason why we put this conditional outside for each loop is that the instructor never equals all
+if ( buttonId === 'All') {
+  printPies(pies);
+}else {
+  printPies(selectedPies);
+}
 };
 
 const buttonEvents = () => {
@@ -115,7 +130,7 @@ const buttonEvents = () => {
 // }
 
 const init = () => {
-    printPies();
+    printPies(pies);
     buttonEvents();
 }
 
